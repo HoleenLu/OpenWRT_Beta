@@ -20,7 +20,9 @@ sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-SE'/g" ./package/base-files/files
 # curl -fsSL  https://raw.githubusercontent.com/firkerword/luci-app-bypass/main/Makefile > ./package/luci-app-bypass/Makefile
 curl -fsSL  https://raw.githubusercontent.com/firkerword/KPR/main/cus_config.yaml > ./package/openwrt-mos/luci-app-mosdns/root/etc/mosdns/cus_config.yaml
 # Modify default IP
-#sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.10.2/g' package/base-files/files/bin/config_generate
+sed -i 'set network.$1.gateway='192.168.10.1'' openwrt/package/base-files/files/bin/config_generate
+sed -i 'set network.$1.dns='1.2.4.8'' openwrt/package/base-files/files/bin/config_generate
 # sed -i '60s/ITdesk01/firkerword/' ./package/jd_openwrt_script/files/jd_openwrt_script
 sed -i 's/bootstrap/argon/g' ./feeds/luci/modules/luci-base/root/etc/config/luci
 rm -rf ./package/lean/luci-theme-argon
